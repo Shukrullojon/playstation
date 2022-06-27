@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::where('user_id',Auth::user()->id())->latest()->paginate(20);
+        $rooms = Room::where('user_id',auth()->user()->id)->latest()->paginate(20);
         return view('admin.room.index',[
             'rooms' => $rooms,
         ]);

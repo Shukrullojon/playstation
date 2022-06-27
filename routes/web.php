@@ -24,4 +24,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('room',\App\Http\Controllers\Admin\RoomController::class);
+
+    Route::get('/manage',[\App\Http\Controllers\Admin\ManageController::class,'index'])->name('manageIndex');
 });

@@ -22,6 +22,15 @@
                 </ul>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route("manageIndex") }}" class="nav-link {{ Request::is('manage*') ? "active" : "" }}">
+                    <i class="nav-icon fa fa-tasks"></i>
+                    <p>
+                        Boshqaruv
+                    </p>
+                </a>
+            </li>
+
             @can('room-index')
                 <li class="nav-item">
                     <a href="{{ route("room.index") }}" class="nav-link {{ Request::is('room*') ? "active" : "" }}">
