@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="{{ asset('AdminDashboard/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('AdminDashboard/plugins/summernote/summernote-bs4.min.css')}}">
+
+    <style>
+        .img_admin{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

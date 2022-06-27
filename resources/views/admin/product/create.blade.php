@@ -44,10 +44,20 @@
 
                                 <div class="col-lg-4 col-sm-12">
                                     <div class="form-group">
-                                        <label>Detail</label><label style="color: red">*</label>
-                                        <input type="text" name="detail" class="form-control {{ $errors->has('detail') ? "is-invalid":"" }}" value="{{ old('detail') }}" required>
-                                        @if($errors->has('detail'))
-                                            <span class="error invalid-feedback">{{ $errors->first('detail') }}</span>
+                                        <label>Price</label><label style="color: red">*</label>
+                                        <input type="text" name="price" class="form-control {{ $errors->has('price') ? "is-invalid":"" }}" value="{{ old('price') }}" required>
+                                        @if($errors->has('price'))
+                                            <span class="error invalid-feedback">{{ $errors->first('price') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Image</label><label style="color: red">*</label>
+                                        <input type="file" name="image" class="form-control {{ $errors->has('image') ? "is-invalid":"" }}" value="{{ old('image') }}" required>
+                                        @if($errors->has('image'))
+                                            <span class="error invalid-feedback">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>

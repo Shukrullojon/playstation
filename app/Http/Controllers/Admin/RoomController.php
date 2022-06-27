@@ -3,17 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProductController extends Controller
+class RoomController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('user_id',Auth::user()->id())->latest()->paginate(20);
-        return view('admin.product.index',[
-            'products' => $products,
+        $rooms = Room::where('user_id',Auth::user()->id())->latest()->paginate(20);
+        return view('admin.room.index',[
+            'rooms' => $rooms,
         ]);
     }
 
@@ -34,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        return view('admin.room.create');
     }
 
     /**
@@ -49,13 +44,13 @@ class ProductController extends Controller
         if(isset($request->image)){
             $image = $this->uploadImage($request);
         }
-        Product::create([
+        Room::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'price' => $request->price,
             'image'=>$image,
         ]);
-        return redirect()->route('product.index')->with('success' ,"Saved successful!") ;
+        return redirect()->route('room.index')->with('success' ,"Saved successful!") ;
     }
 
     public function uploadImage($request){
@@ -76,10 +71,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Room $room)
     {
-        return view('admin.product.show',[
-            'product' => $product
+        return view('admin.room.show',[
+            'room' => $room
         ]);
     }
 
@@ -89,10 +84,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Room $room)
     {
-        return view('admin.product.edit',[
-            'product' => $product
+        return view('admin.room.edit',[
+            'room' => $room
         ]);
     }
 
@@ -103,20 +98,20 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Room $room)
     {
-        $image = $product->image;
+        $image = $room->image;
         if(isset($request->image)){
-            $this->deleteImage($product->image);
+            $this->deleteImage($room->image);
             $image = $this->uploadImage($request);
         }
-        $product->update([
+        $room->update([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'price' => $request->price,
             'image'=>$image,
         ]);
-        return redirect()->route('product.index')->with('success' ,"Update successful!") ;
+        return redirect()->route('room.index')->with('success' ,"Update successful!") ;
     }
 
     /**
@@ -125,10 +120,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Room $room)
     {
-        $this->deleteImage($product->image);
-        $product->delete();
-        return redirect()->route('product.index')->with('success',"Delete successful!");
+        $this->deleteImage($room->image);
+        $room->delete();
+        return redirect()->route('room.index')->with('success',"Delete successful!");
     }
 }
