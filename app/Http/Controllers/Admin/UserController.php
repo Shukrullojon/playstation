@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use DB;
+use Hash;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -78,7 +81,7 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
-        return view('users.edit',[
+        return view('admin.user.edit',[
             'user'=>$user,
             'roles'=>$roles,
             'userRole'=>$userRole

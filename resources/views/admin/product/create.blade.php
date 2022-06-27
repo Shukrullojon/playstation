@@ -58,7 +58,6 @@
                                 <a href="{{ route('product.index') }}" class="btn btn-default float-left">Cancel</a>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

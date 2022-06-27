@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.permission.index');
+        $permissions = Permission::latest()->paginate(20);
+        return view('admin.permission.index',[
+            'permissions' => $permissions,
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.permission.create');
     }
 
     /**
@@ -35,7 +39,11 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Permission::create([
+            'name'=>$request->name,
+            'guard_name'=>$request->guard_name,
+        ]);
+        return redirect()->route('permission.index')->with('success' ,"Saved successful!") ;
     }
 
     /**
@@ -44,9 +52,11 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Permission $permission)
     {
-        //
+        return view('admin.permission.show',[
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -55,9 +65,11 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        //
+        return view('admin.permission.edit',[
+            'permission' => $permission,
+        ]);
     }
 
     /**
@@ -67,9 +79,13 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $permission->update([
+            'name'=>$request->name,
+            'guard_name'=>$request->guard_name,
+        ]);
+        return redirect()->route('permission.index')->with('success' ,"Update successful!") ;
     }
 
     /**
@@ -78,8 +94,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return redirect()->route('permission.index')->with('success',"Delete successful!");
     }
 }
