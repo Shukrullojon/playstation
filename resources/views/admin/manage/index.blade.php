@@ -37,14 +37,17 @@
                                 <div class="icon">
                                     <i class = "ion ion-stats-bars"></i>
                                 </div>
-                                <a href = "#" class="small-box-footer">
-                                    @if(empty($room->package))
+                                @if(empty($room->package))
+                                    <a href = "{{ route("manageOpen",$room->id) }}" class="small-box-footer">
                                         Ochish
-                                    @else
+                                        <i class="fas fa-arrow-circle-right"></i>
+                                    </a>
+                                @else
+                                    <a href = "{{ route("manageCloze",$room->package->id) }}" class="small-box-footer">
                                         Yopish
-                                    @endif"
-                                    <i class="fas fa-arrow-circle-right"></i>
-                                </a>
+                                        <i class="fas fa-arrow-circle-right"></i>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     @endforeach

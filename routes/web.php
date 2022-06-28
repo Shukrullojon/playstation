@@ -26,4 +26,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('room',\App\Http\Controllers\Admin\RoomController::class);
 
     Route::get('/manage',[\App\Http\Controllers\Admin\ManageController::class,'index'])->name('manageIndex');
+    Route::get('/manage/open/{id}',[\App\Http\Controllers\Admin\ManageController::class,'open'])->name("manageOpen");
+    Route::get('/manage/cloze/{id}',[\App\Http\Controllers\Admin\ManageController::class,'cloze'])->name("manageCloze");
 });

@@ -16,4 +16,8 @@ class Package extends Model
     public function order(){
         return $this->hasMany(Order::class);
     }
+
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
 }

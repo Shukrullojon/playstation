@@ -43,7 +43,7 @@ class PermissionController extends Controller
             'name'=>$request->name,
             'guard_name'=>$request->guard_name,
         ]);
-        return redirect()->route('permission.index')->with('success' ,"Saved successful!") ;
+        return redirect()->route('permission.index')->with('success' ,"Saved successful!");
     }
 
     /**

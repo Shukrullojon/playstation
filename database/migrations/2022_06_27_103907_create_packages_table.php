@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->integer('room_id');
+            $table->integer('user_id')->nullable();
+            $table->integer('room_id')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->integer('state')->nullable();
