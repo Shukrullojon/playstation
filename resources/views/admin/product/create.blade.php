@@ -63,6 +63,22 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Category</label><label style="color: red">*</label>
+                                        <select name="category_id" class="form-control">
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if($errors->has('category_id'))
+                                            <span class="error invalid-feedback">{{ $errors->first('category_id') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success float-right">Save</button>
                                 <a href="{{ route('product.index') }}" class="btn btn-default float-left">Cancel</a>

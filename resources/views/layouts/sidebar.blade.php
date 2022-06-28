@@ -53,6 +53,16 @@
                 </li>
             @endcan
 
+            <li class="nav-item">
+                <a href="{{ route("category.index") }}" class="nav-link {{ Request::is('category*') ? "active" : "" }}">
+                    <i class="nav-icon fa fa-list-alt"></i>
+                    <p>
+                        Category
+                    </p>
+                </a>
+            </li>
+
+
             @can(['user-index','role-index','permission-index'])
                 <li class="nav-item {{ Request::is('user*') || Request::is('role*') || Request::is('permission*') ? 'menu-open':''}}">
                     <a href="#" class="nav-link {{ Request::is('user*') || Request::is('role*') || Request::is('permission*') ? 'active':''}}">

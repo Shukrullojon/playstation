@@ -21,7 +21,7 @@
                                     </p>
                                     <p>
                                         @if(!empty($room->package))
-                                            Xaridlar:
+                                            Xaridlar: <button class="btn btn-default">+</button>
                                         @endif
                                         @if(!empty($room->package->order))
                                             @foreach($room->package->order as $o)
@@ -30,9 +30,6 @@
                                             @endforeach
                                         @endif
                                     </p>
-                                    @if(!empty($room->package))
-                                        <p>Umumiy:</p>
-                                    @endif
                                 </div>
                                 <div class="icon">
                                     <i class = "ion ion-stats-bars"></i>

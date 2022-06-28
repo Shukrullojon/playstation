@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $categories = Category::where('user_id',auth()->user()->id)->latest()->get();
+        return view('admin.product.create',[
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -54,8 +58,9 @@ class ProductController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'image'=>$image,
+            'category_id' => $request->category_id,
         ]);
-        return redirect()->route('product.index')->with('success' ,"Saved successful!") ;
+        return redirect()->route('product.index')->with('success' ,"Saved successful!");
     }
 
     public function uploadImage($request){
@@ -91,8 +96,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = Category::where('user_id',auth()->user()->id)->latest()->get();
         return view('admin.product.edit',[
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories,
         ]);
     }
 
@@ -114,7 +121,8 @@ class ProductController extends Controller
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'price' => $request->price,
-            'image'=>$image,
+            'image' => $image,
+            'category_id' => $request->category_id
         ]);
         return redirect()->route('product.index')->with('success' ,"Update successful!") ;
     }

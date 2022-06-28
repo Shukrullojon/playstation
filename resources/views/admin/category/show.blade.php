@@ -1,17 +1,16 @@
 @extends('layouts.admin')
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Product</h1>
+                    <h1>Category</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('adminIndex') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('product.index') }}">Product</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
                         <li class="breadcrumb-item active"></li>
                     </ol>
                 </div>
@@ -28,29 +27,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Name</th>
-                                <td>{{ $product->name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Price</th>
-                                <td>
-                                    {{ number_format($product->price,2,',',' ') }}
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>Kategory</th>
-                                <td>
-                                    @if(!empty($product->category))
-                                        {{ $product->category->name }}
-                                    @endif
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>Image</th>
-                                <td>
-                                    <img src="{{ asset('uploads')}}/{{ $product->image  }}" class="img_admin">
-                                </td>
+                                <td>{{ $category->name }}</td>
                             </tr>
                         </table>
                     </div>

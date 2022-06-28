@@ -24,8 +24,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('room',\App\Http\Controllers\Admin\RoomController::class);
+    Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class);
 
     Route::get('/manage',[\App\Http\Controllers\Admin\ManageController::class,'index'])->name('manageIndex');
     Route::get('/manage/open/{id}',[\App\Http\Controllers\Admin\ManageController::class,'open'])->name("manageOpen");
     Route::get('/manage/cloze/{id}',[\App\Http\Controllers\Admin\ManageController::class,'cloze'])->name("manageCloze");
+    Route::get('/manage/clozepackage/{id}',[\App\Http\Controllers\Admin\ManageController::class,'clozepackage'])->name("manageClozePackage");
 });

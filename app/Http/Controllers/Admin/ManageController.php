@@ -36,10 +36,16 @@ class ManageController extends Controller
             'state' => 2,
         ]);
         $difference = date_diff(date_create($package->start_date), date_create($package->end_date));
-
         return view('admin.manage.show',[
             'package'=>$package,
             'difference'=>$difference,
         ]);
+    }
+
+    public function clozepackage(Package $package){
+        $package->update([
+            'state' => 3,
+        ]);
+        return redirect()->route('manageIndex')->with('success' ,"Cloze room successful!");
     }
 }
