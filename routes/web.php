@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('welcome'); });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('home');
     Route::get('/admin', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name("adminIndex");
     Route::resource('role', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('permission', \App\Http\Controllers\Admin\PermissionController::class);

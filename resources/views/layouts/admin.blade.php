@@ -31,6 +31,11 @@
             width: 100px;
             height: 100px;
         }
+
+        .img_adminsmal{
+            width: 30px;
+            height: 30px;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -110,9 +115,6 @@
 <script src="{{ asset('AdminDashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('AdminDashboard/plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{ asset('AdminDashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{ asset('AdminDashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('AdminDashboard/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
