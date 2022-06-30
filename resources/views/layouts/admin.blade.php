@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Play-Manage | Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -132,5 +133,6 @@
 <script src="{{ asset('AdminDashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('AdminDashboard/dist/js/pages/dashboard.js')}}"></script>
+@yield('scripts')
 </body>
 </html>

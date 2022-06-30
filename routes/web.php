@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('home');
-    Route::get('/admin', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name("adminIndex");
     Route::resource('role', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('permission', \App\Http\Controllers\Admin\PermissionController::class);
     Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
@@ -31,4 +30,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/manage/open/{id}',[\App\Http\Controllers\Admin\ManageController::class,'open'])->name("manageOpen");
     Route::get('/manage/cloze/{id}',[\App\Http\Controllers\Admin\ManageController::class,'cloze'])->name("manageCloze");
     Route::get('/manage/clozepackage/{id}',[\App\Http\Controllers\Admin\ManageController::class,'clozepackage'])->name("manageClozePackage");
+    Route::post("/add/package",[\App\Http\Controllers\Admin\ManageController::class,'addPackage'])->name("addPackage");
 });

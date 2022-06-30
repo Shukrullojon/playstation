@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Package;
+use App\Models\Product;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -50,5 +52,34 @@ class ManageController extends Controller
             'state' => 3,
         ]);
         return redirect()->route('manageIndex')->with('success' ,"Cloze room successful!");
+    }
+
+    public function addPackage(Request $request){
+        $package = Package::where('state',1)->where('room_id',$request->room_id)->first();
+        $order = Order::where('package_id',$package->id)->where('product_id',$request->product_id)->first();
+        $count = $request->productCount;
+        if(!empty($order)){
+            $count = $count + $order->count;
+        }
+        $product = Product::where('id',$request->product_id)->first();
+        $order = Order::updateOrCreate(
+            [
+                'package_id' => $package->id,
+                'product_id' => $request->product_id
+            ],
+            [
+                'name' => $product->name,
+                'price' => $product->price,
+                'count' => $count
+            ]
+        );
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function createPanel(){
+
     }
 }

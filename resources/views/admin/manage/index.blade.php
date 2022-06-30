@@ -22,7 +22,7 @@
                                     <p>
                                         @if(!empty($room->package))
                                             Xaridlar:
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-xl">
+                                            <button type="button" room_id="{{ $room->id }}" class="btn btn-default product_button" data-toggle="modal" data-target="#modal-xl">
                                                 +
                                             </button>
                                         @endif
@@ -69,6 +69,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input name="room_id" type="hidden" value="" class="room_id">
                         @foreach($categories as $category)
                             <div class="col-lg-3 col-md-12">
                                 <p>{{ $category->name }}</p>
@@ -78,8 +79,8 @@
                                             <div class="inner" style="display: flex; align-items: center; gap: 5px">
                                                 <img style="display: inline-block" src="{{ asset("uploads/".$product->image) }}" class="img_adminsmal">
                                                 {{ $product->name }}
-                                                <input type="text" class="form-control">
-                                                <button style="display: inline-block" class="btn btn-success">save</button>
+                                                <input type="text" class="form-control productCount{{ $product->id }}">
+                                                <button style="display: inline-block" class="btn btn-success submitButton" buttonProdutId="{{ $product->id }}">save</button>
                                             </div>
                                         @endforeach
                                     @endif
@@ -97,4 +98,34 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).on("click",".product_button",function (){
+            var room = $(this).attr("room_id");
+            $(".room_id").val(room);
+        });
+
+        $(document).on("click",".submitButton",function (){
+            var product_id = $(this).attr("buttonProdutId");
+            var productCount = $(".productCount"+product_id).val();
+            var room_id = $(".room_id").val();
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type:'POST',
+                url:'{{ route('addPackage') }}',
+                data:{
+                    product_id:product_id,
+                    productCount:productCount,
+                    room_id:room_id
+                },
+                success:function(data){
+                    console.log(data);
+                }
+            });
+        });
+
+    </script>
 @endsection
