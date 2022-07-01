@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="{{ asset('AdminDashboard/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('AdminDashboard/plugins/summernote/summernote-bs4.min.css')}}">
-
+    <!-- Toastr -->
+    <script src="{{ asset('AdminDashboard/plugins/toastr/toastr.min.js')}}"></script>
     <style>
         .img_admin{
             width: 100px;
@@ -133,6 +134,8 @@
 <script src="{{ asset('AdminDashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('AdminDashboard/dist/js/pages/dashboard.js')}}"></script>
+<!-- Toastr -->
+<script src="{{ asset('AdminDashboard/plugins/toastr/toastr.min.js')}}"></script>
 @yield('scripts')
 </body>
 </html>

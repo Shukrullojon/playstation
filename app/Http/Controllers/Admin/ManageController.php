@@ -73,9 +73,14 @@ class ManageController extends Controller
                 'count' => $count
             ]
         );
-
+        $orders = Order::where('package_id',$package->id)->get();
+        $productOut = "";
+        foreach($orders as $order){
+            $productOut .= $order->name." - ".$order->count." x ".number_format($order->price,2,',',' ')." = ".number_format($order->count*$order->price,2,',',' ')."so'm".chr(10);
+        }
         return response()->json([
             'status' => true,
+            'products' => $productOut,
         ]);
     }
 

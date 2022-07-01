@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    <button type="button" class="btn btn-success toastrDefaultSuccess">
+        Launch Success Toast
+    </button>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -26,12 +29,14 @@
                                                 +
                                             </button>
                                         @endif
-                                        @if(!empty($room->package->order))
-                                            @foreach($room->package->order as $o)
-                                                <br>
-                                                {{ $o->name }} - {{ $o->count }} x {{ number_format($o->price,2,',',' ') }} = {{ number_format($o->count*$o->price,2,',',' ') }} so'm
-                                            @endforeach
-                                        @endif
+                                        <div class="productShow{{ $room->id }}">
+                                            @if(!empty($room->package->order))
+                                                @foreach($room->package->order as $o)
+                                                    <br>
+                                                    {{ $o->name }} - {{ $o->count }} x {{ number_format($o->price,2,',',' ') }} = {{ number_format($o->count*$o->price,2,',',' ') }} so'm
+                                                @endforeach
+                                            @endif
+                                        </div>
                                     </p>
                                 </div>
                                 <div class="icon">
@@ -122,10 +127,17 @@
                     room_id:room_id
                 },
                 success:function(data){
-                    console.log(data);
+                    if(data.status) {
+                        $(".productShow" + room_id).text(data.products);
+                        $(".productCount"+product_id).val("");
+                    }else{
+
+                    }
                 }
             });
         });
-
+        $(document).on("click",".toastrDefaultSuccess",function (){
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
     </script>
 @endsection
