@@ -76,8 +76,12 @@ class ManageController extends Controller
         $orders = Order::where('package_id',$package->id)->get();
         $productOut = [];
         foreach($orders as $order){
-            $productOut[] = $order->name." - ".$order->count." x ".number_format($order->price,2,',',' ')." = ".number_format($order->count*$order->price,2,',',' ')."so'm".chr(10);
+
+            $arr['out'] = $order->name." - ".$order->count." x ".number_format($order->price,2,',',' ')." = ".number_format($order->count*$order->price,2,',',' ')."so'm";
+            $arr['order_id']=$order->id;
+            $productOut[] = $arr;
         }
+
         return response()->json([
             'status' => true,
             'products' => $productOut,
@@ -86,5 +90,12 @@ class ManageController extends Controller
 
     public function createPanel(){
 
+    }
+
+    public function delete($id){
+        $order = Order::where('id',$id)->first();
+        if($order->package->user_id == auth()->user()->id)
+            $order->delete();
+        return back()->with('success',"Delete successful!");
     }
 }

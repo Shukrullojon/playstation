@@ -13,4 +13,7 @@ class Order extends Model
 
     protected $guarded = [];
 
+    public function package(){
+        return $this->belongsTo(Package::class);
+    }
 }

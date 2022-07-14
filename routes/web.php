@@ -31,4 +31,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/manage/cloze/{id}',[\App\Http\Controllers\Admin\ManageController::class,'cloze'])->name("manageCloze");
     Route::get('/manage/clozepackage/{id}',[\App\Http\Controllers\Admin\ManageController::class,'clozepackage'])->name("manageClozePackage");
     Route::post("/add/package",[\App\Http\Controllers\Admin\ManageController::class,'addPackage'])->name("addPackage");
+    Route::get("/delete/order/{id}",[\App\Http\Controllers\Admin\ManageController::class,'delete'])->name('deleteOrder');
 });

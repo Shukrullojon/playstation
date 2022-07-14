@@ -11,7 +11,7 @@
                     @foreach($rooms as $room)
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box @if(empty($room->package)) bg-success @else bg-danger @endif">
+                            <div class="small-box @if(empty($room->package)) bg-success @else bg-gradient-gray @endif">
                                 <div class="inner">
                                     <h3>{{ $room->name }}</h3>
                                     <p>
@@ -32,6 +32,7 @@
                                                 @foreach($room->package->order as $o)
                                                     <br>
                                                     {{ $o->name }} - {{ $o->count }} x {{ number_format($o->price,2,',',' ') }} = {{ number_format($o->count*$o->price,2,',',' ') }} so'm
+                                                    <a href="{{ route('deleteOrder',$o->id) }}"><i class="fa fa-trash float-right" style="color: red" aria-hidden="true"></i></a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -129,7 +130,8 @@
                         $(".productShow" + room_id).text("");
                         var p = data.products;
                         for(var i = 0; i < p.length; i ++){
-                            $(".productShow" + room_id).append(p[i]+"<br>");
+                            $(".productShow" + room_id).append(
+                                p[i]['out']+'<a href="/delete/order/'+p[i]['order_id']+'"><i class="fa fa-trash float-right" style="color: red" aria-hidden="true"></i></a>'+"<br>");
                         }
                         $(".productCount"+product_id).val("");
                     }else{
