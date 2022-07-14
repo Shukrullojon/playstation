@@ -115,6 +115,7 @@
 <script src="{{ asset('AdminDashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('AdminDashboard/plugins/chart.js/Chart.min.js')}}"></script>
+<script src="{{ asset('AdminDashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('AdminDashboard/plugins/sparklines/sparkline.js')}}"></script>
 <!-- jQuery Knob Chart -->

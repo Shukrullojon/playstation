@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <button type="button" class="btn btn-success toastrDefaultSuccess">
-        Launch Success Toast
-    </button>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">

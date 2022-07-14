@@ -60,6 +60,15 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fa fa-flag-usa"></i>
+                    <p>
+                        To'lovlar
+                    </p>
+                </a>
+            </li>
+
 
             @can(['user-index','role-index','permission-index'])
                 <li class="nav-item {{ Request::is('user*') || Request::is('role*') || Request::is('permission*') ? 'menu-open':''}}">
