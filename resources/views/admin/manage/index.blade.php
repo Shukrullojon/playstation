@@ -126,7 +126,11 @@
                 },
                 success:function(data){
                     if(data.status) {
-                        $(".productShow" + room_id).text(data.products);
+                        $(".productShow" + room_id).text("");
+                        var p = data.products;
+                        for(var i = 0; i < p.length; i ++){
+                            $(".productShow" + room_id).append(p[i]+"<br>");
+                        }
                         $(".productCount"+product_id).val("");
                     }else{
 
